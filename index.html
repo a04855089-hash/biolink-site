@@ -1084,9 +1084,8 @@
                 musicControl.classList.add('playing');
             }).catch(err => console.log('Audio autoplay prevented:', err));
             setTimeout(() => loading.classList.add('hidden'), 500);
-            setTimeout(() => animateValue(document.getElementById('viewCount'), 0, 6666, 2000), 1000);
-
-            // Log visitor on entry
+            // Increment real view count and log visitor
+            incrementViews();
             logVisitor();
         });
 
@@ -1176,8 +1175,21 @@
         }
 
         // =====================================================
-        // VIEW COUNTER
+        // REAL VIEW COUNTER (counterapi.dev)
         // =====================================================
+        async function incrementViews() {
+            const viewEl = document.getElementById('viewCount');
+            try {
+                const res = await fetch('https://api.counterapi.dev/v1/staysilent-biolink/visits/up');
+                const data = await res.json();
+                if (data.count !== undefined) {
+                    animateValue(viewEl, 0, data.count, 1500);
+                }
+            } catch (e) {
+                viewEl.textContent = '-';
+            }
+        }
+
         function animateValue(element, start, end, duration) {
             let startTimestamp = null;
             const step = (timestamp) => {
