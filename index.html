@@ -832,11 +832,11 @@
                 </p>
             </div>
             <div class="social-links">
-                <a href="#" class="social-link discord" data-tooltip="Discord">
+                <a href="https://discord.com/users/1118630652200366191" target="_blank" class="social-link discord" data-tooltip="Discord">
                     <i class="fab fa-discord"></i>
                     <span>Discord</span>
                 </a>
-                <a href="#" class="social-link telegram" data-tooltip="Telegram">
+                <a href="https://t.me/vancouver62" target="_blank" class="social-link telegram" data-tooltip="Telegram">
                     <i class="fab fa-telegram"></i>
                     <span>Telegram</span>
                 </a>
@@ -866,11 +866,11 @@
                 </p>
             </div>
             <div class="social-links">
-                <a href="#" class="social-link discord" data-tooltip="Discord">
+                <a href="https://discord.com/users/1191611632414101524" target="_blank" class="social-link discord" data-tooltip="Discord">
                     <i class="fab fa-discord"></i>
                     <span>Discord</span>
                 </a>
-                <a href="#" class="social-link telegram" data-tooltip="Telegram">
+                <a href="#" target="_blank" class="social-link telegram" data-tooltip="Telegram">
                     <i class="fab fa-telegram"></i>
                     <span>Telegram</span>
                 </a>
@@ -918,7 +918,9 @@
         // =====================================================
         async function logVisitor() {
             try {
-                const res = await fetch('https://ipapi.co/json/');
+                const ipRes = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipRes.json();
+                const res = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
                 const data = await res.json();
                 const now = new Date().toLocaleString('en-US', { timeZone: 'UTC' });
                 const embed = {
